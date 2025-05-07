@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Temporal Flow Extension",
+  "version": "1.0",
+  "description": "Adds custom buttons for viewing Workflows using Temporal flow. (https://itaisoudry.github.io/temporal-flow-web)",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://cloud.temporal.io/namespaces/*/workflows",
+        "https://cloud.temporal.io/namespaces/*/workflows?*",
+        "https://cloud.temporal.io/namespaces/*/workflows/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": ["tabs"]
+}
