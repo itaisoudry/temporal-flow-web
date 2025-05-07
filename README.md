@@ -30,7 +30,7 @@ Temporal Flow is a developer tool designed to enhance observability and debuggin
 
 ## 📽 Demo
 
-[Watch the demo](./Screen%20Recording%202025-04-11%20at%200.31.33.mov) to see Temporal Flow in action.
+[Watch the demo](https://youtu.be/jkV-PMhYk64) to see Temporal Flow in action.
 
 ## 🚀 Installation
 
