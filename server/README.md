@@ -36,10 +36,9 @@ This will provider the needed data for the UI to display the workflow data.
    Note:
 
    - The `TEMPORAL_API_KEY` can be found in your Temporal Cloud account settings
-   - The `TEMPORAL_ENDPOINT` is your Temporal namespace endpoint (e.g., "foo.bar.tmprl.cloud")
+   - The `TEMPORAL_ENDPOINT` is your Temporal namespace id (e.g., "temporal-flow.zn0bd.tmprl.cloud")
    - Do not include "https://" or ".web.tmprl.cloud" in the endpoint
-   - You can use localhost if you have temporal running locally or in a k8s cluster
-   
+   - You can use localhost if you have temporal running locally or in a k8s cluster (note that some temporal features are limited in this case)
 
 ## Running the Server
 
@@ -69,7 +68,6 @@ docker run -p 7531:7531 \
   -e TEMPORAL_ENDPOINT=your-endpoint \
   ghcr.io/itaisoudry/temporal-flow-server:main
 ```
-
 
 ### Build the Docker Image
 

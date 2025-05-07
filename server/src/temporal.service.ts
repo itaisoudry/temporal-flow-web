@@ -18,15 +18,13 @@ export default class TemporalService {
       this.endpoint = `https://${temporalEndpoint}.web.tmprl.cloud`;
     }
 
-    if (!this.apiKey) {
-      throw new Error(
-        "Temporal API Key is required - set TEMPORAL_API_KEY envvar"
-      );
+    if (this.apiKey) {
+      this.headers = {
+        Authorization: `Bearer ${this.apiKey}`,
+      };
+    } else {
+      this.headers = {};
     }
-
-    this.headers = {
-      Authorization: `Bearer ${this.apiKey}`,
-    };
   }
 
   async searchWorkflows(query: string, namespace: string) {
