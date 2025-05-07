@@ -1,114 +1,134 @@
-# Temporal Graph UI
+# Temporal Flow
 
-**Temporal Graph UI** is a developer tool designed to enhance observability and debugging of workflows within [Temporal](https://temporal.io/). This custom UI presents Temporal workflow executions as an interactive graph, enabling intuitive navigation through nested workflows and a faster, smarter search experience compared to the default Temporal Web UI.
+<div align="center">
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A powerful developer tool for visualizing and debugging Temporal workflows through an interactive graph interface.
+
+[Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Usage](#-usage) • [Contributing](#-contributing)
+
+</div>
+
+## Overview
+
+Temporal Flow is a developer tool designed to enhance observability and debugging of workflows within [Temporal](https://temporal.io/). It presents workflow executions as an interactive graph, enabling intuitive navigation through nested workflows and providing a faster, smarter search experience compared to the default Temporal Web UI.
 
 ## ✨ Features
 
 - 🔍 **Advanced Search**  
-  Quickly locate workflows, activities, and nested executions with an intuitive search bar that supports partial names, workflow types, and more.
+  Quickly locate workflows, activities, and nested executions with an intuitive search bar supporting partial names, workflow types, and more.
 
-- 🧭 **Graph Visualization**  
-  Visualize relationships between parent and child workflows as an interactive node graph. This makes it easy to explore deeply nested or complex workflows at a glance.
+- 🧭 **Interactive Graph Visualization**  
+  Visualize relationships between parent and child workflows as an interactive node graph, making it easy to explore deeply nested or complex workflows at a glance.
 
-- 🪄 **Smooth Exploration**  
+- 🪄 **Seamless Exploration**  
   Hover and click on graph nodes to inspect workflow details such as execution status, timestamps, and input/output payloads—all without leaving the context of the graph.
 
-- ⚡ **Faster Than the Default UI**  
+- ⚡ **Performance Optimized**  
   Designed with performance and usability in mind to improve speed and developer experience during workflow analysis.
 
 ## 📽 Demo
 
-[Watch the demo](./Screen%20Recording%202025-04-11%20at%200.31.33.mov) to see the Temporal Graph UI in action.
+[Watch the demo](./Screen%20Recording%202025-04-11%20at%200.31.33.mov) to see Temporal Flow in action.
 
-## 🚀 Setup
+## 🚀 Installation
 
-### Generate API key
+### Prerequisites
+
+- A running Temporal instance
+- API key from your Temporal namespace
+
+### Generate API Key
+
 In Temporal, go to `Namespaces`, choose your namespace:
 
 ![Namespace List](./docs/images/namespaceList.png)
 
-Scroll down and choose `Generate API Key`, make sure you save you API Key.
+Scroll down and choose `Generate API Key`, make sure you save your API Key.
 
+### Server Setup
 
-## Run local server
+1. Follow the [server setup instructions](server/README.md) to configure the backend service.
+2. The server can be run either through your IDE or using the provided Docker image.
 
-See [server README.md](server/README.md).
+> **Note:** The server is required to fetch Temporal Events as Temporal doesn't provide a web-accessible API. This also ensures your Temporal API Key remains secure.
 
-You can run the server from your IDE or use the Docker Image to run it.
+### Web Interface
 
-This server is used to fetch the Temporal Events of the workflows so the UI can have all the needed data.
-The main reason for this server, is that Temporal doesn't have an API that is accessable from a web application.\
-Another reason, is that I don't want to save your Temporal API Key :)
+1. Visit the [Temporal Flow Web Interface](https://itaisoudry.github.io/temporal-flow-web/)
+2. Configure your namespace settings (see [Configuration](#configuration))
 
-After the server is up and running, go to the [Temporal Flow Page](https://itaisoudry.github.io/temporal-flow-web/) and search search for the workflow you want to view!
+## 📋 Usage
 
-## Add your namespace to Temporal Flow
-Go to `Search`, click the `Settings` icon.
-![Namespace Settings Marked](./docs/images/namespaceSettingsMarked.png)
+### Configuration
 
-Now you can add Namespaces and Search Parameters, Add the desired `Namespace` or `Search Parameter` and click the `+` button
-![Namespace Settings](./docs/images/configuredSearchSettings.png)
+1. Navigate to the Search page
+2. Click the Settings icon
+   ![Namespace Settings Marked](./docs/images/namespaceSettingsMarked.png)
 
-Click Save.
+3. Add your Namespace and Search Parameters, then click the `+` button
+   ![Namespace Settings](./docs/images/configuredSearchSettings.png)
 
+4. Click Save
 
-Now you can see your `Namespace` at the top, and you should see the default search results:
+Your namespace will appear at the top, showing the default search results:
 ![Search Overview](./docs/images/searchOverview.png)
 
+### Search Syntax
 
-## Search Syntax
-Similar to Temporal search syntax, for example:
-* WorkflowId starts with 'batch' - Will search for all the workflows with ids that starts with 'batch'
-* Status  = Completed, Status = Running  - Search for workflows by multiple statuses
+Temporal Flow supports a rich search syntax similar to Temporal's native search:
 
-You can also use Search Parameters, fields with dates like StartTime etc...
- ![Search Syntax](./docs/images/searchParams.png)
+- `WorkflowId starts with 'batch'` - Find workflows with IDs starting with 'batch'
+- `Status = Completed, Status = Running` - Search by multiple statuses
+- Support for date-based fields (StartTime, etc.)
 
-After completing the search query, press `Search` or hit `Enter` and it will execute the search query.
+![Search Syntax](./docs/images/searchParams.png)
 
-## Search Results
-Using the quick view button, will show you the workflow data.
-You can open more than one quick view!
+After completing the search query, press `Search` or hit `Enter` to execute the search.
+
+### Search Results
+
+Using the quick view button will show you the workflow data. You can open multiple quick views simultaneously!
 ![Search Quick View](./docs/images/searchQuickView.png)
 
-
-Clicking the `Magnifying Glass` will load the workflow to the graph.
+Clicking the `Magnifying Glass` will load the workflow to the graph:
 ![Nodes](./docs/images/nodes.png)
 
-Click on a workflow to expand it and see its child workflows/activities!
+### Graph Navigation
 
-## Graph Nodes
-There are three types of nodes: Workflow, Activity and Batch.
-Clicking the top right button will show you the node data, like in the `Search`.
-![Single Node](./docs/images/singleNode.png)
+- **Node Types**: Workflow, Activity, and Batch nodes
+- **Node Inspection**: Click the top-right button to view detailed node data
+  ![Single Node](./docs/images/singleNode.png)
 
-For batch nodes, click the `Magnifying Glass` to spread the batched nodes in case you are looking for something specific inside.
+- **Batch Processing**: Use the magnifying glass icon to expand batch nodes
+- **Data Tabs**: Access Input/Output, Error, Time, and Common information for each node
 
-In the data section of each node you have four tabs: Input/Output, Error, Time and Common which contains all the needed information about a Workflow or Activity.
-You can open more than one and drag them around, really helpful if you need to compare between multiple workflows/activities.
+### Chrome Extension
 
+Enhance your workflow with our [Chrome Extension](chrome-extension/README.md) to seamlessly load workflows from Temporal into Temporal Flow.
 
-# Chrome Extension
-You can load workflows from Temporal into Temporal Flow using this chrome extention!
-
-Click the `Magnifying Glass` and it will open a new tab with Temporal Flow and load the chosen Workflow.
+Click the `Magnifying Glass` to open a new tab with Temporal Flow and load the chosen Workflow:
 ![Chrome Extension](./docs/images/chromeExtension.png)
 
-For setup, see [chrome-extension README.md](chrome-extension/README.md)).
+## 🤝 Feedback
 
-
-## 🛠 Issues & Feature Requests
-
-Got feedback, a feature idea, or found a bug?  
-Please open an issue right here in the [GitHub Issues](https://github.com/itaisoudry/temporal-flow-web/issues) section of this repository.  
-Alternatively, feel free to reach out directly by email.
+Feel free to:
+- Submit bug reports
+- Suggest new features
+- Reach out with any question, request or feedback!
 
 ## 📬 Contact
 
-- **Email**: [temporalflowapp@gmail.com](mailto:temporalflowapp@gmail.com)  
-- **LinkedIn**: [www.linkedin.com/in/itai-soudry-257a01123](https://www.linkedin.com/in/itai-soudry-257a01123)
+- **Email**: [temporalflowapp@gmail.com](mailto:temporalflowapp@gmail.com)
+- **LinkedIn**: [Itai Soudry](https://www.linkedin.com/in/itai-soudry-257a01123)
+
+## 📄 License
+
+This project is licensed under the MIT License
 
 ---
 
-Thank you for checking out this project!\
-Feedback are always welcome.
+<div align="center">
+Thank you for checking out this project!
+</div>
