@@ -1,0 +1,29 @@
+{
+  "name": "temporal-flow-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.7.13",
+    "@temporalio/client": "^1.11.5",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.13.5",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2"
+  }
+}
