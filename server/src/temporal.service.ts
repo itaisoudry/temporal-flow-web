@@ -7,12 +7,15 @@ export default class TemporalService {
   constructor() {
     this.apiKey = process.env.TEMPORAL_API_KEY ?? "";
     const temporalEndpoint = process.env.TEMPORAL_ENDPOINT ?? "";
+    const temporalOverrideEndpoint = process.env.TEMPORAL_OVERRIDE_ENDPOINT ?? "";
     if (!temporalEndpoint) {
       throw new Error(
         "Temporal Endpoint is required - set TEMPORAL_ENDPOINT envvar"
       );
     }
-    if (temporalEndpoint.includes("localhost")) {
+    if (temporalOverrideEndpoint) {
+      this.endpoint = temporalOverrideEndpoint;
+    } else if (temporalEndpoint.includes("localhost")) {
       this.endpoint = `http://${temporalEndpoint}`;
     } else {
       this.endpoint = `https://${temporalEndpoint}.web.tmprl.cloud`;
