@@ -71,7 +71,7 @@ The Temporal Flow API Server is a dedicated service that interfaces with Tempora
 docker run -p 7531:7531 \
   -e TEMPORAL_API_KEY=your-api-key \
   -e TEMPORAL_ENDPOINT=your-endpoint \
-  ghcr.io/itaisoudry/temporal-flow-server:main
+  ghcr.io/itaisoudry/temporal-flow-web:main
 ```
 
 #### Building from Source
@@ -79,7 +79,7 @@ docker run -p 7531:7531 \
 1. **Build the image**
 
    ```bash
-   docker build -t temporal-flow-server .
+   docker build -t temporal-flow-web .
    ```
 
 2. **Run the container**
