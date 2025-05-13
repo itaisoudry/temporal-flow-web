@@ -53,7 +53,7 @@ The Temporal Flow API Server is a dedicated service that interfaces with Tempora
    > **Note**:
    >
    > - Find your `TEMPORAL_API_KEY` in Temporal Cloud account settings
-   > - `TEMPORAL_ENDPOINT` should be your namespace ID (e.g., "temporal-flow.zn0bd.tmprl.cloud")
+   > - `TEMPORAL_ENDPOINT` should be your namespace ID (e.g., "temporal-flow.zn0bd")
    > - Omit "https://" and ".web.tmprl.cloud" from the endpoint
    > - For local development, you can use localhost (some features may be limited)
 
