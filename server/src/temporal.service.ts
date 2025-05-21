@@ -65,22 +65,30 @@ export default class TemporalService {
     workflowId: string,
     runId: string
   ) {
-    const url = `${this.endpoint}/api/v1/namespaces/${namespace}/workflows/${workflowId}/history?execution.runId=${runId}&next_page_token=`;
-    const response = await fetch(url, { headers: this.headers });
-    if (!response.ok) {
-      throw new InternalServerError(
-        `Failed to get workflow events. Status: ${
-          response.status
-        }, ${JSON.stringify(await response.json())}`
-      );
-    }
     const allEvents = [];
-    let nextPageToken = null;
+    let nextPageToken = "";
+
     do {
+      const url = `${
+        this.endpoint
+      }/api/v1/namespaces/${namespace}/workflows/${workflowId}/history?execution.runId=${runId}&next_page_token=${encodeURIComponent(
+        nextPageToken
+      )}`;
+      const response = await fetch(url, { headers: this.headers });
+
+      if (!response.ok) {
+        throw new InternalServerError(
+          `Failed to get workflow events. Status: ${
+            response.status
+          }, ${JSON.stringify(await response.json())}`
+        );
+      }
+
       const data = await response.json();
       allEvents.push(...data.history.events);
       nextPageToken = data.nextPageToken;
     } while (nextPageToken);
+
     return allEvents;
   }
 }
