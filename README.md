@@ -26,7 +26,7 @@ Temporal Flow is a developer tool designed to enhance observability and debuggin
   Visualize relationships between parent and child workflows as an interactive node graph, making it easy to explore deeply nested or complex workflows at a glance.
 
 - 🪄 **Seamless Exploration**  
-  Hover and click on graph nodes to inspect workflow details such as execution status, timestamps, and input/output payloads—all without leaving the context of the graph.
+  Hover and click on graph nodes to inspect workflow details such as execution status, timestamps, and input/output payloads, all without leaving the context of the graph.
 
 - ⚡ **Workflow Operations**  
   Manage workflows directly with actions like terminate, retry, and start as new. Perform batch operations on multiple workflows through the search interface.
@@ -56,62 +56,11 @@ Temporal Flow is a developer tool designed to enhance observability and debuggin
    - Enter your self hosted Termporal UI address (e.g., `localhost:8080`)
    - Note that if it is hosted on k8s or something similar, you need to use port forward or expose the Temporal UI so the app can access it.
 
-## 🔐 Authentication Process
-
-Temporal Flow provides two authentication methods: Temporal Cloud and Local Server. Here's how each method works under the hood:
-
-### Temporal Cloud Authentication
-
-We offer two ways to authenticate with Temporal Cloud:
-
-1. **Browser-Based SSO (Recommended)**
-   - When you click "Authenticate with Temporal Cloud":
-   - The app opens your system browser to Temporal Cloud's login page
-   - You complete the authentication in your secure browser environment
-   - After successful login, our app detects the authentication via callback
-   - Your session tokens are securely stored in the app
-   - Platform-specific behavior:
-     - macOS: Deep links automatically return you to the app
-     - Windows: The app detects authentication completion
-     - Linux: Manual return to the app is needed
-
-2. **API Key Authentication**
-   - Alternative method using Temporal Cloud API Keys
-   - Enter your API key from Temporal Cloud settings
-   - The app validates the key and establishes a secure connection
-   - API keys are never stored in plain text
-   - Recommended for CI/CD or automated environments
-
-### Local Server Authentication
-
-For self-hosted Temporal servers:
-
-1. **Direct Connection**
-   - Enter your server endpoint (default: `localhost:8080`)
-   - The app attempts to connect to your local Temporal UI
-   - If UI cookies are present, they're automatically used for authentication
-   - No additional authentication needed for most local deployments
-   - Namespaces are automatically discovered and loaded
-
-### Security Considerations
-
-- All authentication data is stored securely in the Electron app
-- No plain-text credentials are ever saved
-- You can clear all stored authentication data at any time
-- The app uses your system's secure credential storage when available
-- All connections use HTTPS for cloud and HTTP/GRPC for local servers
-
-### Troubleshooting
-
-If authentication fails:
-1. For Local: Check if your Temporal server is running and accessible
-2. Use the "Clear All Stored Data" button to reset authentication state
-3. Check if your Temporal UI is accessible in your browser
 
 
-## 📽 Demo (TODO - Electron app video)
+## 📽 Demo
 
-[Watch the demo](https://youtu.be/jkV-PMhYk64) to see Temporal Flow in action.
+[Watch the demo](https://youtu.be/bpgzXN9wq8k) to see Temporal Flow in action.
 
 ## 🚀 Installation (Desktop app)
 Download from the [Releases](https://github.com/itaisoudry/temporal-flow-web/releases) page.
@@ -179,8 +128,69 @@ Note that in `Self Hosted Temporal Server` the status is updated only when you e
 - **Workflow Action Menu**: Right click on a workflow node to access the menu
 ![Action Menu](./docs/images/workflowActionMenu.png)
 
+## 🔐 Authentication Process
+
+Temporal Flow provides two authentication methods: Temporal Cloud and Local Server. Here's how each method works under the hood:
+
+### Temporal Cloud Authentication
+
+We offer two ways to authenticate with Temporal Cloud:
+
+1. **Browser-Based SSO (Recommended)**
+   - When you click "Authenticate with Temporal Cloud":
+   - The app opens your system browser to Temporal Cloud's login page
+   - You complete the authentication in your secure browser environment
+   - After successful login, our app detects the authentication via callback
+   - Your session tokens are securely stored in the app
+   - Platform-specific behavior:
+     - macOS: Deep links automatically return you to the app
+     - Windows: The app detects authentication completion
+     - Linux: Manual return to the app is needed
+
+2. **API Key Authentication**
+   - Alternative method using Temporal Cloud API Keys
+   - Enter your API key from Temporal Cloud settings
+   - The app validates the key and establishes a secure connection
+   - API keys are never stored in plain text
+   - Recommended for CI/CD or automated environments
+
+### Local Server Authentication
+
+For self-hosted Temporal servers:
+
+1. **Direct Connection**
+   - Enter your server endpoint (default: `localhost:8080`)
+   - The app attempts to connect to your local Temporal UI
+   - If UI cookies are present, they're automatically used for authentication
+   - No additional authentication needed for most local deployments
+   - Namespaces are automatically discovered and loaded
+
+### Security Considerations
+
+- All authentication data is stored securely in the Electron app
+- No plain-text credentials are ever saved
+- You can clear all stored authentication data at any time
+- The app uses your system's secure credential storage when available
+- All connections use HTTPS for cloud and HTTP/GRPC for local servers
+
+### Troubleshooting
+
+If authentication fails:
+1. For Local: Check if your Temporal server is running and accessible
+2. Use the "Clear All Stored Data" button to reset authentication state
+3. Check if your Temporal UI is accessible in your browser
+
 ### Chrome Extension
 This is still a work in progress, I will soon get it up and running with the Desktop app.
+
+### Google Analytics
+The desktop app uses GA only for sending minimal events so I can keep track of:
+- Number of installations
+- Daily active users
+
+No other data is being sent using GA.
+
+
 
 ## 🤝 Feedback
 
@@ -196,7 +206,9 @@ Feel free to:
 
 ## 📄 License
 
-This project is licensed under the MIT License
+The server component and Chrome extension in this repository are licensed under the MIT License. This allows you to freely use, modify, and distribute these components.
+
+Note: The desktop application (Temporal Flow App) is distributed separately and is not covered by this license. The desktop app is proprietary software with its own terms of use.
 
 ---
 
